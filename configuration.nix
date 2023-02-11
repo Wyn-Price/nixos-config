@@ -48,14 +48,15 @@
   users.users.wp = {
     isNormalUser = true;
     description = "Wyn Price";
-    extraGroups = [ "networkmanager" "wheel" "wp" ];
+    uid = 1000;
+    group = "wp";
+    extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [];
     shell = pkgs.fish;
   };
 
   users.groups.wp = {
     name = "wp";
-    members = ["wp"];
     gid = 1000;
   };
 
