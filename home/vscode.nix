@@ -5,6 +5,7 @@
     extensions = with pkgs.vscode-extensions; [
       vscodevim.vim
       bbenoist.nix
+      shardulm94.trailing-spaces
     ];
   };
 }

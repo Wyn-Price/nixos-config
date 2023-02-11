@@ -18,7 +18,7 @@ in
         inherit pkgs;
       };
     };
-    
+
     imports = with pkgs; [
       ./i3.nix
       ./alacritty.nix
