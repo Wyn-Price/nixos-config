@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ pkgs, config, lib, ... }:
 
 {
   imports = with pkgs; [ # Include the results of the hardware scan.
@@ -48,8 +48,15 @@
   users.users.wp = {
     isNormalUser = true;
     description = "Wyn Price";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "wp" ];
     packages = with pkgs; [];
+    shell = pkgs.fish;
+  };
+
+  users.groups.wp = {
+    name = "wp";
+    members = ["wp"];
+    gid = 1000;
   };
 
   # Allow unfree packages

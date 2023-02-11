@@ -1,8 +1,6 @@
-{ config, lib, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
-let
-  mod = "Mod4";
-in {
+{
   services.xserver = {
     enable = true;
     desktopManager = {
@@ -12,7 +10,7 @@ in {
       defaultSession = lib.mkForce "none+i3";
     };
     windowManager.i3 = {
-      enable=true;
+      enable = true;
       extraPackages = with pkgs; [
         dmenu i3status i3lock
       ];
