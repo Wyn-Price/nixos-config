@@ -1,10 +1,13 @@
 {
   description = "NixOS configuration";
 
-  inputs.nixpkgs.url = "nixpkgs/nixos-unstable";
-  inputs.nur.url = github:nix-community/NUR;
-
   inputs = {
+    nur = {
+      url = github:nix-community/NUR;
+    };
+    nixpkgs = {
+      url = "nixpkgs/nixos-unstable";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -26,9 +29,15 @@
     };
 
     homeConfigurations.wp = home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
       extraSpecialArgs = { inherit inputs; };
-      modules = [ ./home ];
+      modules = [
+        nur.nixosModules.nur
+        ./home
+      ];
     };
   };
 }

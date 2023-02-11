@@ -1,10 +1,13 @@
 
 { config, pkgs, libs, ... }:
 {
-
   nixpkgs.config.allowUnfree = true;
-  environment.pathsToLink = [ "/libexec" ];
-  environment.systemPackages = with pkgs; [ vim ];
+  environment.systemPackages = with pkgs; [
+    vim
+    home-manager
+  ];
+
+  nix.settings.experimental-features = "nix-command flakes";
 
   # Find a way to share this with the home manager?
   system.stateVersion = "22.11";
