@@ -5,6 +5,9 @@
   environment.systemPackages = with pkgs; [
     vim
     home-manager
+    libnotify
+    dunst
+    arandr
   ];
 
   nix.settings.experimental-features = "nix-command flakes";

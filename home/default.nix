@@ -6,12 +6,13 @@
     homeDirectory = "/home/wp";
   };
   imports = with pkgs; [
-    ./i3.nix
     ./alacritty.nix
     ./firefox.nix
     ./fish.nix
     ./git.nix
     ./gpg.nix
+    ./i3.nix
+    ./screenshot.nix
     ./vscode.nix
   ];
 }

@@ -8,6 +8,7 @@
         modifier = config.xsession.windowManager.i3.config.modifier;
       in lib.mkOptionDefault {
         "${modifier}+Return" = "exec alacritty";
+        "Print" = "exec wp-screenshot";
       };
     };
   };
