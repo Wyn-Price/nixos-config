@@ -20,6 +20,11 @@
               keyword = ":hm";
               url = "https://mipmip.github.io/home-manager-option-search/?%s";
             }
+            {
+              name = "Nixos Packages";
+              keyword = ":nix";
+              url = "https://search.nixos.org/packages?channel=22.11&query=%s";
+            }
           ];
         }
       ];
