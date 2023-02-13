@@ -1,5 +1,5 @@
 {
-  description = "NixOS configuration";
+  description = "Wyn Price NixOS configuration";
 
   inputs = {
     nur = {
@@ -18,8 +18,7 @@
   let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
-  in
-  rec {
+  in {
     nixosConfigurations.furnace = nixpkgs.lib.nixosSystem {
       modules = [
         nur.nixosModules.nur

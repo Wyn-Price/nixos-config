@@ -13,9 +13,8 @@
   system.stateVersion = "22.11";
 
   imports = with pkgs; [
-    ../misc
-
     ./i3.nix
+    ./localisation.nix
     ./users.nix
   ];
 }
