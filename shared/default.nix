@@ -12,7 +12,7 @@
   # Find a way to share this with the home manager?
   system.stateVersion = "22.11";
 
-  imports = with pkgs; [
+  imports = [
     ./i3.nix
     ./localisation.nix
     ./users.nix
