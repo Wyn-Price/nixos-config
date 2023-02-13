@@ -1,0 +1,62 @@
+[
+  {
+    "key": "shift+alt+down",
+    "command": "editor.action.copyLinesDownAction",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+shift+alt+down",
+    "command": "-editor.action.copyLinesDownAction",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "shift+alt+up",
+    "command": "editor.action.copyLinesUpAction",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+shift+alt+up",
+    "command": "-editor.action.copyLinesUpAction",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+      "key": "ctrl+'",
+      "command": "workbench.action.terminal.toggleTerminal",
+      "when": "terminal.active"
+  },
+  {
+      "key": "ctrl+`",
+      "command": "-workbench.action.terminal.toggleTerminal",
+      "when": "terminal.active"
+  },
+  {
+      "key": "ctrl+shift+'",
+      "command": "workbench.action.terminal.new",
+      "when": "terminalProcessSupported || terminalWebExtensionContributedProfile"
+  },
+  {
+      "key": "ctrl+shift+`",
+      "command": "-workbench.action.terminal.new",
+      "when": "terminalProcessSupported || terminalWebExtensionContributedProfile"
+  },
+  {
+    "key": "ctrl+alt+up",
+    "command": "editor.action.insertCursorAbove",
+    "when": "editorTextFocus"
+  },
+  {
+      "key": "ctrl+shift+up",
+      "command": "-editor.action.insertCursorAbove",
+      "when": "editorTextFocus"
+  },
+  {
+      "key": "ctrl+alt+down",
+      "command": "editor.action.insertCursorBelow",
+      "when": "editorTextFocus"
+  },
+  {
+      "key": "ctrl+shift+down",
+      "command": "-editor.action.insertCursorBelow",
+      "when": "editorTextFocus"
+  }
+]
