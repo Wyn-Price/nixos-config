@@ -1,5 +1,8 @@
 { config, pkgs, ... }:
 {
+  nixpkgs.overlays = [
+    (import ./scripts)
+  ];
   home = {
     stateVersion = "22.11";
     username = "wp";
