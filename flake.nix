@@ -22,19 +22,10 @@
     nixosConfigurations.furnace = nixpkgs.lib.nixosSystem {
       modules = [
         nur.nixosModules.nur
+        home-manager.nixosModules.home-manager
+
         ./machines/furnace
         ./shared
-      ];
-    };
-
-    homeConfigurations.wp = home-manager.lib.homeManagerConfiguration {
-      pkgs = import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-      };
-      extraSpecialArgs = { inherit inputs; };
-      modules = [
-        nur.nixosModules.nur
         ./home
       ];
     };

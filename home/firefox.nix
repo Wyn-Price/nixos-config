@@ -7,7 +7,7 @@
       name = "Wyn Price";
       search.default = "Google";
 
-      extensions = with config.nur.repos.rycee.firefox-addons; [
+      extensions = with pkgs.nur.repos.rycee.firefox-addons; [
         onepassword-password-manager
       ];
 
