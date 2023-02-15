@@ -2,11 +2,7 @@
 {
   home-manager.users.wp = {
     nixpkgs = {
-      overlays = [
-        (import ./scripts)
-        # Pass nur to pkgs
-        (self: super: { nur = config.nur; })
-      ];
+      overlays = import ../overlay { config = config; };
       config.allowUnfree = true;
     };
     home = {
