@@ -4,27 +4,27 @@
     enable = true;
     publicKeys = [
       {
-        source = ./data/gpg/me.gpg;
+        source = ./keys/me.gpg;
         trust = "ultimate";
       }
       {
-        source = ./data/gpg/archey.gpg;
+        source = ./keys/archey.gpg;
         trust = "full";
       }
       {
-        source = ./data/gpg/chandler.gpg;
+        source = ./keys/chandler.gpg;
         trust = "full";
       }
       {
-        source = ./data/gpg/gpe.gpg;
+        source = ./keys/gpe.gpg;
         trust = "full";
       }
       {
-        source = ./data/gpg/hjf.gpg;
+        source = ./keys/hjf.gpg;
         trust = "full";
       }
       {
-        source = ./data/gpg/wjb.gpg;
+        source = ./keys/wjb.gpg;
         trust = "full";
       }
     ];

@@ -11,7 +11,7 @@
     plugins = [
       {
         name = "wp-theme";
-        src = ./data/fish/wp-theme;
+        src = ./wp-theme;
       }
     ];
   };
