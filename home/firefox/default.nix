@@ -23,7 +23,7 @@
             {
               name = "Nixos Packages";
               keyword = ":nix";
-              url = "https://search.nixos.org/packages?channel=22.11&query=%s";
+              url = "https://search.nixos.org/options?channel=22.11&query=%s";
             }
           ];
         }
