@@ -3,11 +3,12 @@
 {
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-    vim
+    arandr
+    dunst
     home-manager
     libnotify
-    dunst
-    arandr
+    pulsemixer
+    vim
   ];
 
   nix.settings.experimental-features = "nix-command flakes";
@@ -16,6 +17,8 @@
   system.stateVersion = "22.11";
 
   imports = [
+    ./audio.nix
+    ./bluetooth.nix
     ./i3.nix
     ./localisation.nix
     ./users.nix
