@@ -2,17 +2,19 @@
 {
   xsession.windowManager.i3 = {
     enable = true;
-    config = {
+    config = let
       modifier = "Mod4";
-      keybindings = let
-        modifier = config.xsession.windowManager.i3.config.modifier;
-        left = "h";
-        right = "l";
-        up = "k";
-        down = "j";
-      in lib.mkOptionDefault {
+      alt = "Mod1";
+      left = "h";
+      right = "l";
+      up = "k";
+      down = "j";
+    in {
+      modifier = modifier;
+      keybindings = lib.mkOptionDefault {
         "${modifier}+Return" = "exec ${pkgs.alacritty}/bin/alacritty";
         "Print" = "exec ${pkgs.custom-scripts.wp-screenshot}/bin/wp-screenshot";
+        "${modifier}+${alt}+l" = "exec ${pkgs.lightdm}/bin/dm-tool lock";
 
         "${modifier}+${left}" = "focus left";
         "${modifier}+${right}" = "focus right";
@@ -26,7 +28,13 @@
       };
     };
     extraConfig = ''
-      exec ${pkgs.xautolock}/bin/xautolock -time 2 -locker '${pkgs.lightdm}/bin/dm-tool lock' -detectsleep
+      exec ${pkgs.xautolock}/bin/xautolock \
+           -time 2 \
+           -corners -000 \
+           -notify 30 \
+           -notifier "${pkgs.libnotify}/bin/notify-send -u critical -t 30000 -- 'LOCKING screen in 30 seconds'" \
+           -locker '${pkgs.lightdm}/bin/dm-tool lock' \
+           -detectsleep
     '';
   };
 
