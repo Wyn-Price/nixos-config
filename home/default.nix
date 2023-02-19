@@ -15,6 +15,7 @@
       ./gpg
       ./i3
       ./screenshot
+      ./spotify
       ./vscode
     ];
   };
