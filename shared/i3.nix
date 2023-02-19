@@ -13,6 +13,8 @@
       background = "#080808";
       greeters.mini =  {
         enable = true;
+        # TODO: move away from direct reference to user.
+        # Also having this configurable would be nice
         user = "wp";
         extraConfig = ''
           window-color = "#1B1D1E"
@@ -24,9 +26,7 @@
     };
     windowManager.i3 = {
       enable = true;
-      extraPackages = with pkgs; [
-        dmenu i3lock
-      ];
+      extraPackages = with pkgs; [ dmenu ];
     };
   };
 }

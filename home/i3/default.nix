@@ -25,9 +25,20 @@
         "${modifier}+Shift+${down}" = "move down";
       };
     };
+    extraConfig = ''
+      exec ${pkgs.xautolock}/bin/xautolock -time 2 -locker '${pkgs.lightdm}/bin/dm-tool lock' -detectsleep
+    '';
   };
 
-  programs.i3status-rust = {
+  home.packages = with pkgs; [
+    xautolock
+  ];
+
+  programs.i3status = {
     enable = true;
+    general = {
+      interval = 1;
+    };
   };
+
 }
