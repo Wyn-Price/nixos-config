@@ -9,11 +9,13 @@
 
     imports = with pkgs; [
       ./alacritty
+      ./email
       ./firefox
       ./fish
       ./git
       ./gpg
       ./i3
+      ./onepassword
       ./screenshot
       ./spotify
       ./vscode
