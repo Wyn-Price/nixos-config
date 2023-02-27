@@ -15,6 +15,9 @@
       apply = {
         whitespace = "fix";
       };
+      push = {
+        autoSetupRemote = true;
+      }
     };
   };
   home.packages = with pkgs; [
