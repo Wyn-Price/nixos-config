@@ -16,6 +16,7 @@
       ./gpg
       ./i3
       ./onepassword
+      ./rust
       ./screenshot
       ./spotify
       ./vscode
