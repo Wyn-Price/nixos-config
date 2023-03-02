@@ -1,5 +1,7 @@
 { config, pkgs, lib, ... }:
-{
+let
+  blocksConfig = import ./i3blocks { config = config; pkgs = pkgs; };
+in {
   xsession.windowManager.i3 = {
     enable = true;
     config = let
@@ -29,7 +31,7 @@
       bars = [
         {
           position = "bottom";
-          statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs";
+          statusCommand = "${pkgs.i3blocks}/bin/i3blocks -c ${blocksConfig}";
         }
       ];
     };
@@ -47,11 +49,8 @@
 
   home.packages = with pkgs; [
     i3lock
+    i3blocks
     xautolock
   ];
-
-  programs.i3status-rust = {
-    enable = true;
-  };
 
 }
