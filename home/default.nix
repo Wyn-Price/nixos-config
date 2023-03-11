@@ -9,6 +9,7 @@
 
     imports = with pkgs; [
       ./alacritty
+      ./discord
       ./email
       ./firefox
       ./fish
