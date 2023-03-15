@@ -15,7 +15,9 @@
       ./fish
       ./git
       ./gpg
+      ./java
       ./i3
+      ./minecraft
       ./onepassword
       ./rust
       ./screenshot
