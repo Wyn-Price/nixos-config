@@ -1,6 +1,7 @@
 inputs@{ pkgs, ... }:
 let
   text = with builtins; concatStringsSep "\n" (map (p: import p inputs) [
+    ./spotify.nix
     ./cpu.nix
     ./time.nix
   ]);
