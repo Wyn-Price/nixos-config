@@ -6,6 +6,7 @@
     arandr
     dunst
     home-manager
+    htop
     libnotify
     pulsemixer
     vim

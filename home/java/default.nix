@@ -1,4 +1,7 @@
 { config, pkgs, ... }:
 {
-  home.packages = with pkgs; [ openjdk8 ];
+  home.packages = with pkgs; [
+    openjdk8
+    jetbrains.idea-ultimate
+  ];
 }
