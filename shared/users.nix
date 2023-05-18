@@ -7,7 +7,7 @@
     description = "Wyn Price";
     uid = 1000;
     group = "wp";
-    extraGroups = [ "audio" "networkmanager" "wheel" ];
+    extraGroups = [ "audio" "networkmanager" "wheel" "vboxusers" ];
     packages = with pkgs; [];
     shell = pkgs.fish;
   };

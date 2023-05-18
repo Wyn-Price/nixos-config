@@ -5,6 +5,7 @@
       overlays = import ../overlay { config = config; };
       config.allowUnfree = true;
     };
+
     home.stateVersion = "22.11";
 
     imports = with pkgs; [
@@ -21,8 +22,12 @@
       ./onepassword
       ./rust
       ./screenshot
-      ./spotify
       ./vscode
+    ];
+
+    home.packages = with pkgs; [
+      spotify
+      discord
     ];
   };
 }
