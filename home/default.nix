@@ -16,13 +16,14 @@
       ./fish
       ./git
       ./gpg
-      ./java
       ./i3
       ./idea
+      ./java
       ./minecraft
       ./onepassword
       ./rust
       ./screenshot
+      ./ssh
       ./vscode
     ];
 
