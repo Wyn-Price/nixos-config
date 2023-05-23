@@ -18,6 +18,7 @@
 
   imports = [
     ./localisation.nix
+    ./sshd
     ./users
   ];
 }
