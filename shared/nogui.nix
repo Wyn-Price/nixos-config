@@ -9,8 +9,6 @@
     vim
   ];
 
-  virtualisation.virtualbox.host.enable = true;
-
   nix.settings.experimental-features = "nix-command flakes";
 
   # Find a way to share this with the home manager?
