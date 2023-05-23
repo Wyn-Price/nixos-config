@@ -24,6 +24,6 @@
     ./bluetooth.nix
     ./i3.nix
     ./localisation.nix
-    ./users.nix
+    ./users
   ];
 }

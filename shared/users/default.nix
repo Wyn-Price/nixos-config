@@ -10,6 +10,9 @@
     extraGroups = [ "audio" "networkmanager" "wheel" "vboxusers" ];
     packages = with pkgs; [];
     shell = pkgs.fish;
+    openssh.authorizedKeys.keyFiles = [
+      ./wp.ssh.key
+    ];
   };
 
   users.groups.wp = {

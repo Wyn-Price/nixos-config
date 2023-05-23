@@ -19,15 +19,27 @@
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
   in {
-    nixosConfigurations.furnace = nixpkgs.lib.nixosSystem {
-      modules = [
-        nur.nixosModules.nur
-        home-manager.nixosModules.home-manager
+    nixosConfigurations = {
+      furnace = nixpkgs.lib.nixosSystem {
+        modules = [
+          nur.nixosModules.nur
+          home-manager.nixosModules.home-manager
 
-        ./machines/furnace
-        ./shared
-        ./home
-      ];
-    };
+          ./machines/furnace
+          ./shared
+          ./home
+        ];
+      };
+
+      stoneslab = nixpkgs.lib.nixosSystem {
+        modules = [
+          nur.nixosModules.nur
+          home-manager.nixosModules.home-manager
+
+          ./machines/stoneslab
+          ./shared
+          ./home/nogui.nix
+        ];
+      };
   };
 }
