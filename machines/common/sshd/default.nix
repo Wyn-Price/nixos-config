@@ -5,5 +5,5 @@
     enable = true;
     passwordAuthentication = false;
     kbdInteractiveAuthentication = false;
-  }
+  };
 }

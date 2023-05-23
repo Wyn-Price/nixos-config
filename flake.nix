@@ -37,9 +37,11 @@
           home-manager.nixosModules.home-manager
 
           ./machines/stoneslab
-          ./shared
+          ./machines/common/sshd
+          ./shared/nogui.nix
           ./home/nogui.nix
         ];
       };
+    };
   };
 }

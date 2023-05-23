@@ -18,6 +18,7 @@
       ./gpg
       ./java
       ./i3
+      ./idea
       ./minecraft
       ./onepassword
       ./rust
