@@ -39,6 +39,9 @@
           ./machines/stoneslab
           ./shared/nogui.nix
           ./home/nogui.nix
+
+          # Point home.wynprice.com at stoneslab
+          ./modules/cfdyndns
         ];
       };
     };
