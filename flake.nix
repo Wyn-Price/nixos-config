@@ -40,7 +40,7 @@
           ./shared/nogui.nix
           ./home/nogui.nix
 
-          # Point home.wynprice.com at stoneslab
+          # Update home.wynprice.com to this machine
           ./modules/cfdyndns
         ];
       };
