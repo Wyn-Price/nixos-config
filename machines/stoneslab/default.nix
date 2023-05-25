@@ -21,14 +21,6 @@
 
   networking.firewall.allowedTCPPorts = [ 25565 ];
 
-  services.cfdyndns-wp = {
-    enable = true;
-    email = "wynprice999@gmail.com";
-    records = [ "home.wynprice.com" ];
-    # TODO: Don't hardcode?
-    apikeyFile = "/var/lib/wp/cfdyndns-api.key";
-  };
-
   # Set your time zone.
   # time.timeZone = "Europe/Amsterdam";
 
