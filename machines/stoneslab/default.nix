@@ -21,6 +21,9 @@
 
   networking.firewall.allowedTCPPorts = [ 25565 ];
 
+  # Allow headless boot
+  boot.vesa = true;
+
   # Set your time zone.
   # time.timeZone = "Europe/Amsterdam";
 
