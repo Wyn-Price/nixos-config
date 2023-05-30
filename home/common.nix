@@ -11,7 +11,6 @@
     ./fish
     ./git
     ./gpg
-    ./java
   ];
 
   home.packages = with pkgs; [

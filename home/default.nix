@@ -15,6 +15,7 @@
       ./firefox
       ./i3
       ./idea
+      ./java
       ./minecraft
       ./onepassword
       ./rust
