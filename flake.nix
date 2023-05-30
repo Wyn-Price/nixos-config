@@ -22,6 +22,7 @@
     nixosConfigurations = {
       furnace = nixpkgs.lib.nixosSystem {
         modules = [
+          ./modules
           nur.nixosModules.nur
           home-manager.nixosModules.home-manager
 
@@ -33,6 +34,7 @@
 
       stoneslab = nixpkgs.lib.nixosSystem {
         modules = [
+          ./modules
           nur.nixosModules.nur
           home-manager.nixosModules.home-manager
 
