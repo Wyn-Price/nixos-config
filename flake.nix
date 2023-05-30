@@ -41,7 +41,7 @@
           ./home/nogui.nix
 
           # TODO: rename nogui -> headless
-          # "${nixpkgs}/nixos/modules/profiles/headless.nix"
+          "${nixpkgs}/nixos/modules/profiles/headless.nix"
 
           # Update home.wynprice.com to this machine
           ./modules/cfdyndns
