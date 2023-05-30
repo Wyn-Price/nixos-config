@@ -17,5 +17,7 @@
     unzip
     dig
     screen
+
+    mrpack-install
   ];
 }
