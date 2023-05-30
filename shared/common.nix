@@ -1,7 +1,5 @@
-
 { config, pkgs, libs, ... }:
 {
-# TODO: mix with default.nix
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     home-manager
@@ -17,8 +15,7 @@
   system.stateVersion = "22.11";
 
   imports = [
-    ./localisation.nix
-    ./sshd
+    ./localisation
     ./users
   ];
 }

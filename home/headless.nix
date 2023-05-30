@@ -6,16 +6,13 @@
       config.allowUnfree = true;
     };
 
-    home.stateVersion = "22.11";
-
     imports = with pkgs; [
+      ./common.nix
+
       ./fish
       ./git
       ./gpg
       ./java
-    ];
-
-    home.packages = with pkgs; [
     ];
   };
 }

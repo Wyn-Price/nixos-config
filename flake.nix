@@ -37,10 +37,10 @@
           home-manager.nixosModules.home-manager
 
           ./machines/stoneslab
-          ./shared/nogui.nix
-          ./home/nogui.nix
+          ./shared/headless.nix
+          ./home/headless.nix
 
-          # TODO: rename nogui -> headless
+          # Not neccessarily needed anymore
           "${nixpkgs}/nixos/modules/profiles/headless.nix"
 
           # Update home.wynprice.com to this machine

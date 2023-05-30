@@ -6,19 +6,15 @@
       config.allowUnfree = true;
     };
 
-    home.stateVersion = "22.11";
-
     imports = with pkgs; [
+      ./common.nix
+
       ./alacritty
       ./discord
       ./email
       ./firefox
-      ./fish
-      ./git
-      ./gpg
       ./i3
       ./idea
-      ./java
       ./minecraft
       ./onepassword
       ./rust
@@ -30,7 +26,6 @@
     home.packages = with pkgs; [
       spotify
       discord
-      unetbootin
     ];
   };
 }
