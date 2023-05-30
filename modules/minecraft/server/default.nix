@@ -5,7 +5,7 @@ let
 
   forgeOpts = { config, ... }: {
     url = mkOption {
-      type = types.string;
+      type = types.str;
       example = "https://maven.minecraftforge.net/net/minecraftforge/forge/1.19.2-43.2.12/forge-1.19.2-43.2.12-installer.jar";
       description = lib.mdDoc ''
         The download url for the forge jar
@@ -13,7 +13,7 @@ let
     };
 
     hash = mkOption {
-      type = types.string;
+      type = types.str;
       description = lib.mdDoc ''
         The hash of the download url
       '';
@@ -41,7 +41,7 @@ let
       };
 
       entrypoint = mkOption {
-        types = types.string;
+        type = types.str;
         default = "./run.sh";
         description = lib.mdDoc ''
           The command to run to start the server. Defaults to ./start
@@ -71,7 +71,7 @@ in
       enable = mkEnableOption "Whether the services is enabled at all";
 
       baseDir = mkOption {
-        type = types.string;
+        type = types.str;
         default = "/var/lib/minecraft";
         description = lib.mdDoc ''
           The base directory for all minecraft servers
@@ -88,11 +88,11 @@ in
     };
   };
 
-
   # TODO: service that
-  # Installs forge if needed
-  # Runs mrpack-install on the mrpack
-  # Also replaces the server.properties
+  #  - Installs forge if needed
+  #  - Runs mrpack-install on the mrpack
+  #  - Also replaces the server.properties
+  #  - Whitelist?
 
   config = mkIf cfg.enable {
     users.users.minecraft = {
@@ -105,8 +105,9 @@ in
     users.groups.minecraft = {};
 
     systemd.services = concatMapAttrs (name: server: {
-      ${name} = mkIf server.enable {
+      "mincraft-server-mrpack-${name}" = mkIf server.enable {
         enable = true;
+        # TODO HERE
       };
     }) cfg.servers;
   };
