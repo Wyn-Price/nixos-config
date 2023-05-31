@@ -64,6 +64,16 @@ let
       };
     };
   };
+
+   stopScript = pkgs.writeShellScript "minecraft-server-stop" ''
+      echo stop > $1
+
+      # Wait for the PID of the minecraft server to disappear before
+      # returning, so systemd doesn't attempt to SIGKILL it.
+      while kill -0 "$2" 2> /dev/null; do
+        sleep 1s
+      done
+    '';
 in
 {
   options = {
@@ -104,11 +114,82 @@ in
     };
     users.groups.minecraft = {};
 
-    systemd.services = concatMapAttrs (name: server: {
-      "mincraft-server-mrpack-${name}" = mkIf server.enable {
-        enable = true;
-        # TODO HERE
-      };
-    }) cfg.servers;
+    systemd = mkMerge (mapAttrsToList (name: server:
+      let
+        service-name = "minecraft-server-mrpack-${name}";
+        directory = "${cfg.baseDir}/${name}";
+        forgeInstaller = mkIf (server?forge) (fetchurl {
+          src = server.forge.url;
+          sha256 = server.forge.hash;
+        }) // "";
+      in
+      mkIf server.enable {
+        sockets.minecraft-server = {
+          bindsTo = [ "${service-name}.service" ];
+          socketConfig = {
+            ListenFIFO = "/run/minecraft-servers/${service-name}.stdin";
+            SocketMode = "0660";
+            SocketUser = "minecraft";
+            SocketGroup = "minecraft";
+            RemoveOnStop = true;
+            FlushPending = true;
+          };
+        };
+
+        services.${service-name} = {
+          enable = true;
+
+          description   = "Minecraft Server Service ${name}";
+          wantedBy      = [ "multi-user.target" ];
+          requires      = [ "${service-name}.socket" ];
+          after         = [ "network.target" "${service-name}.socket" ];
+
+          serviceConfig = {
+            ExecStart = "PATH=${server.java}/bin:${pkgs.bash}/bin ";
+            ExecStop = "${stopScript} ${name} $MAINPID";
+            Restart = "always";
+            User = "minecraft";
+            WorkingDirectory = directory;
+
+            StandardInput = "socket";
+            StandardOutput = "journal";
+            StandardError = "journal";
+
+            # Hardening
+            CapabilityBoundingSet = [ "" ];
+            DeviceAllow = [ "" ];
+            LockPersonality = true;
+            PrivateDevices = true;
+            PrivateTmp = true;
+            PrivateUsers = true;
+            ProtectClock = true;
+            ProtectControlGroups = true;
+            ProtectHome = true;
+            ProtectHostname = true;
+            ProtectKernelLogs = true;
+            ProtectKernelModules = true;
+            ProtectKernelTunables = true;
+            ProtectProc = "invisible";
+            RestrictAddressFamilies = [ "AF_INET" "AF_INET6" ];
+            RestrictNamespaces = true;
+            RestrictRealtime = true;
+            RestrictSUIDSGID = true;
+            SystemCallArchitectures = "native";
+            UMask = "0077";
+          };
+
+          preStart =''
+            echo ${forgeInstaller}
+          '';
+        };
+      }
+    ) cfg.servers);
+
+      # systemd.services = concatMapAttrs (name: server: {
+      #   "mincraft-server-mrpack-${name}" = mkIf server.enable {
+      #     enable = true;
+      #     # TODO HERE
+      #   };
+      # }) cfg.servers;
   };
 }
