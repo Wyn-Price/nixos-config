@@ -3,23 +3,6 @@ with lib;
 let
   cfg = config.service.mrpack-server;
 
-  forgeOpts = { config, ... }: {
-    url = mkOption {
-      type = types.str;
-      example = "https://maven.minecraftforge.net/net/minecraftforge/forge/1.19.2-43.2.12/forge-1.19.2-43.2.12-installer.jar";
-      description = lib.mdDoc ''
-        The download url for the forge jar
-      '';
-    };
-
-    hash = mkOption {
-      type = types.str;
-      description = lib.mdDoc ''
-        The hash of the download url
-      '';
-    };
-  };
-
   # TODO: whitelist?
   serverOpts = { name, config, ... }: {
     options = {
@@ -56,10 +39,11 @@ let
         '';
       };
 
-      forge = mkOption {
-        type = types.submodule forgeOpts;
+      additionalInstallCommand = mkOption {
+        type = types.str;
+        default = "echo No additional Install Commands";
         description = lib.mdDoc ''
-          Config for, the forge version to install, if any.
+          The forge installer package to use, if any.
         '';
       };
     };
@@ -73,6 +57,12 @@ let
       while kill -0 "$2" 2> /dev/null; do
         sleep 1s
       done
+    '';
+
+    # We won't build with eula=false
+    eulaFile = builtins.toFile "eula.txt" ''
+      # eula.txt managed by NixOS Configuration
+      eula=true
     '';
 in
 {
@@ -93,6 +83,16 @@ in
         default = {};
         description = lib.mdDoc ''
           mr-pack controlled minecraft server
+        '';
+      };
+
+      eula = mkOption {
+        type = types.bool;
+        default = false;
+        description = lib.mdDoc ''
+          Whether you agree to
+          [Mojangs EULA](https://account.mojang.com/documents/minecraft_eula). This option must be set to
+          `true` to run Minecraft server.
         '';
       };
     };
@@ -118,16 +118,14 @@ in
       let
         service-name = "minecraft-server-mrpack-${name}";
         directory = "${cfg.baseDir}/${name}";
-        forgeInstaller = mkIf (server?forge) (fetchurl {
-          src = server.forge.url;
-          sha256 = server.forge.hash;
-        }) // "";
+        mrPackInstall = "${pkgs.mrpack-install}/bin/mrpack-install ${server.mrpack} --server-dir ${directory} --server-file run.sh";
+        stdInFile = "/run/minecraft-servers/${service-name}.stdin";
       in
       mkIf server.enable {
-        sockets.minecraft-server = {
+        sockets.${service-name} = {
           bindsTo = [ "${service-name}.service" ];
           socketConfig = {
-            ListenFIFO = "/run/minecraft-servers/${service-name}.stdin";
+            ListenFIFO = stdInFile;
             SocketMode = "0660";
             SocketUser = "minecraft";
             SocketGroup = "minecraft";
@@ -145,11 +143,12 @@ in
           after         = [ "network.target" "${service-name}.socket" ];
 
           serviceConfig = {
-            ExecStart = "PATH=${server.java}/bin:${pkgs.bash}/bin ";
-            ExecStop = "${stopScript} ${name} $MAINPID";
+            Environment = "PATH=${server.java}/bin";
+            ExecStart = "${pkgs.bash}/bin/bash -c 'cd ${directory} && ${pkgs.bash}/bin/bash run.sh'";
+            ExecStop = "${stopScript} ${stdInFile} $MAINPID";
             Restart = "always";
             User = "minecraft";
-            WorkingDirectory = directory;
+            WorkingDirectory = cfg.baseDir;
 
             StandardInput = "socket";
             StandardOutput = "journal";
@@ -178,8 +177,17 @@ in
             UMask = "0077";
           };
 
-          preStart =''
-            echo ${forgeInstaller}
+          preStart = ''
+            ${pkgs.coreutils}/bin/mkdir -p ${directory}
+            cd ${directory}
+
+            # Declarative files
+            ${pkgs.coreutils}/bin/rm -r mods/ eula.txt
+
+            ${server.additionalInstallCommand}
+            ${mrPackInstall}
+
+            ${pkgs.coreutils}/bin/ln -sf ${eulaFile} eula.txt
           '';
         };
       }
@@ -191,5 +199,13 @@ in
       #     # TODO HERE
       #   };
       # }) cfg.servers;
+     assertions = [
+      { assertion = cfg.eula;
+        message = "You must agree to Mojangs EULA to run minecraft-server."
+          + " Read https://account.mojang.com/documents/minecraft_eula and"
+          + " set `eula` to `true` if you agree.";
+      }
+    ];
+
   };
 }

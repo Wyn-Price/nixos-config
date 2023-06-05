@@ -1,20 +1,22 @@
-{ lib, stdenv, makeWrapper, fetchurl, openjdk17 }:
+{ lib, stdenv, makeWrapper, fetchurl, jre }:
 
 stdenv.mkDerivation rec {
   pname = "minecraftforge-installer-1.19.2";
   version = "1.19.2-43.2.12";
 
+  jarname = "forge-${version}-installer.jar";
+
   src = fetchurl {
     url = "https://maven.minecraftforge.net/net/minecraftforge/forge/${version}/forge-${version}-installer.jar";
-    sha256 = "";
+    sha256 = "XKKGV0LmuumI0YZCK5dFoiDm2Vz6I5cDkvVlCBSjrEg=";
   };
 
   nativeBuildInputs = [ makeWrapper ];
 
   buildCommand = ''
-    ls $out
-    jar=$out/share/java/forge-${version}-installer.jar
-    install -Dm444 $src $jar
-    makeWrapper ${openjdk17}/bin/java -jar $jar
+    mkdir -p $out/bin
+    install -Dm444 $src $out/share/java/$jarname
+    makeWrapper ${jre}/bin/java $out/bin/$pname \
+      --add-flags "-jar $out/share/java/$jarname --installServer"
   '';
 }

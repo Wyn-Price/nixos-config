@@ -17,8 +17,5 @@
     unzip
     dig
     screen
-
-    mrpack-install
-    forge-installer.forge-1-19-2
   ];
 }

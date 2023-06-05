@@ -4,6 +4,7 @@
     {
       custom-scripts = {
         wp-screenshot = import ./wp-screenshot.nix { pkgs = pkgs; };
+        mc-terminal = import ./mc-terminal.nix { pkgs = pkgs; };
       };
 
       mrpack-install = pkgs.callPackage ./packages/mrpack-install {};
