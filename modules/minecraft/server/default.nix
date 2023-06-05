@@ -182,7 +182,7 @@ in
             cd ${directory}
 
             # Declarative files
-            ${pkgs.coreutils}/bin/rm -r mods/ eula.txt
+            ${pkgs.coreutils}/bin/rm -rf mods/ eula.txt
 
             ${server.additionalInstallCommand}
             ${mrPackInstall}
