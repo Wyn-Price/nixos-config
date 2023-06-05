@@ -11,7 +11,7 @@
     ];
 
     # mc-terminal to manage minecraft servers
-    home.pkgs = [
+    home.pkgs = with pkgs; [
         custom-scripts.mc-terminal
     ];
   };
