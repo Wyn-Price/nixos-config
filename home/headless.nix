@@ -13,6 +13,6 @@
     # mc-terminal to manage minecraft servers
     home.pkgs = [
         custom-scripts.mc-terminal
-    ]
+    ];
   };
 }

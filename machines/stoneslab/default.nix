@@ -10,6 +10,18 @@
       ./hardware-configuration.nix
     ];
 
+  service.mrpack-server = {
+    enable = true;
+    eula = true;
+
+    servers.create_vanilla = {
+      enable = true;
+      additionalInstallCommand = "${pkgs.forge-installer.forge-1-19-2}/bin/minecraftforge-installer-1.19.2";
+      mrpack = ./mrpacks/create_vanilla.mrpack;
+    };
+  };
+  networking.firewall.allowedTCPPorts = [ 25565 ];
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -18,8 +30,6 @@
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
-
-  networking.firewall.allowedTCPPorts = [ 25565 ];
 
   # Set your time zone.
   # time.timeZone = "Europe/Amsterdam";

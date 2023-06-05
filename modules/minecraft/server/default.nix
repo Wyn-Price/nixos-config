@@ -50,12 +50,12 @@ let
   };
 
    stopScript = pkgs.writeShellScript "minecraft-server-stop" ''
-      echo stop > $1
+      ${pkgs.coreutils}/bin/echo stop > $1
 
       # Wait for the PID of the minecraft server to disappear before
       # returning, so systemd doesn't attempt to SIGKILL it.
       while kill -0 "$2" 2> /dev/null; do
-        sleep 1s
+        ${pkgs.coreutils}/bin/sleep 1s
       done
     '';
 
