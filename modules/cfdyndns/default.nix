@@ -1,7 +1,6 @@
 # Shamelessly copied from https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/services/misc/cfdyndns.nix
 # as they don't provide a way to use API TOKENS
 # TODO: PR this upstream
-# TODO: this also isn't really a module
 { config, pkgs, lib, ... }:
 {
   systemd.services.cfdyndns = {
