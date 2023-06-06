@@ -4,6 +4,13 @@
     {
       custom-scripts = {
         wp-screenshot = import ./wp-screenshot.nix { pkgs = pkgs; };
+        mc-terminal = import ./mc-terminal.nix { pkgs = pkgs; };
+      };
+
+      mrpack-install = pkgs.callPackage ./packages/mrpack-install {};
+
+      forge-installer = {
+        forge-1-19-2 = pkgs.callPackage ./packages/minecraftforge-install/1.19.2.nix {};
       };
     }
   )

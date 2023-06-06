@@ -8,11 +8,11 @@
 
     imports = with pkgs; [
       ./common.nix
+    ];
 
-      ./fish
-      ./git
-      ./gpg
-      ./java
+    # mc-terminal to manage minecraft servers
+    home.packages = with pkgs; [
+        custom-scripts.mc-terminal
     ];
   };
 }

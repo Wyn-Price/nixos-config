@@ -1,6 +1,9 @@
 { config, pkgs, libs, ... }:
 {
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs = {
+    overlays = import ../overlay { config = config; };
+    config.allowUnfree = true;
+  };
   environment.systemPackages = with pkgs; [
     home-manager
     htop
