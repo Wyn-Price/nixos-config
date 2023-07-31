@@ -11,6 +11,7 @@
 
   imports = [
     ./common.nix
+    ./keyremap.nix
     ./docker
     ./audio
     ./bluetooth

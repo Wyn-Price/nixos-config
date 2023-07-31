@@ -58,5 +58,15 @@
       "key": "ctrl+shift+down",
       "command": "-editor.action.insertCursorBelow",
       "when": "editorTextFocus"
+  },
+  {
+    "key": "capslock",
+    "command": "extension.vim_escape",
+    "when": "editorTextFocus && vim.active && !inDebugRepl"
+  },
+  {
+    "key": "escape",
+    "command": "-extension.vim_escape",
+    "when": "editorTextFocus && vim.active && !inDebugRepl"
   }
 ]
