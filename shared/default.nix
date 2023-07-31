@@ -9,10 +9,9 @@
     pulsemixer
   ];
 
-  virtualisation.virtualbox.host.enable = true;
-
   imports = [
     ./common.nix
+    ./docker
     ./audio
     ./bluetooth
     ./i3

@@ -7,7 +7,7 @@
     description = "Wyn Price";
     uid = 1000;
     group = "wp";
-    extraGroups = [ "audio" "networkmanager" "wheel" "vboxusers" ];
+    extraGroups = [ "audio" "networkmanager" "wheel" ];
     packages = with pkgs; [];
     shell = pkgs.fish;
     openssh.authorizedKeys.keyFiles = [

@@ -17,6 +17,7 @@
       ./idea
       ./java
       ./minecraft
+      ./node
       ./onepassword
       ./rust
       ./screenshot
