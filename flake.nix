@@ -32,6 +32,17 @@
         ];
       };
 
+      bookshelf = nixpkgs.lib.nixosSystem {
+        modules = [
+          ./modules
+          nur.nixosModules.nur
+          home-manager.nixosModules.home-manager
+
+          ./machines/bookshelf
+          ./shared
+          ./home
+        ];
+      };
       stoneslab = nixpkgs.lib.nixosSystem {
         modules = [
           ./modules
