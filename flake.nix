@@ -43,6 +43,7 @@
           ./home
         ];
       };
+
       stoneslab = nixpkgs.lib.nixosSystem {
         modules = [
           ./modules
