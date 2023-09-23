@@ -10,6 +10,7 @@
       ./common.nix
 
       ./alacritty
+      ./brightnessctl
       ./discord
       ./email
       ./firefox

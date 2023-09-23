@@ -2,6 +2,12 @@
 let
   blocksConfig = import ./i3blocks { config = config; pkgs = pkgs; };
 in {
+  # start x
+  programs.fish.loginShellInit = "exec startx";
+
+  # .xinitrc
+  home.file.".xinitrc".source = ./.xinitrc;
+
   xsession.windowManager.i3 = {
     enable = true;
     config = let

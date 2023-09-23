@@ -15,6 +15,6 @@
     ./docker
     ./audio
     ./bluetooth
-    ./i3
+    ./xserver
   ];
 }
