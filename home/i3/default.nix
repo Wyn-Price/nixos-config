@@ -22,7 +22,7 @@ in {
       keybindings = lib.mkOptionDefault {
         "${modifier}+Return" = "exec ${pkgs.alacritty}/bin/alacritty";
         "Print" = "exec ${pkgs.custom-scripts.wp-screenshot}/bin/wp-screenshot";
-        "${modifier}+${alt}+l" = "exec ${pkgs.lightdm}/bin/dm-tool lock";
+        "${modifier}+${alt}+l" = "exec ${pkgs.i3lock}/bin/i3lock -c 450041 -e";
 
         "${modifier}+${left}" = "focus left";
         "${modifier}+${right}" = "focus right";
