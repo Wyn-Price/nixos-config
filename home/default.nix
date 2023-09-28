@@ -21,6 +21,7 @@
       ./logseq
       ./minecraft
       ./node
+      ./obs-studio
       ./onepassword
       ./rust
       ./screenshot
