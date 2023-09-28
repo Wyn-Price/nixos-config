@@ -17,6 +17,8 @@
       ./i3
       ./idea
       ./java
+      ./libreoffice
+      ./logseq
       ./minecraft
       ./node
       ./onepassword

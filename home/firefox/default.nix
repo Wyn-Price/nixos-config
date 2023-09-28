@@ -22,9 +22,14 @@
               url = "https://mipmip.github.io/home-manager-option-search/?%s";
             }
             {
-              name = "Nixos Packages";
+              name = "Nixos Options";
               keyword = ":nix";
-              url = "https://search.nixos.org/options?channel=22.11&query=%s";
+              url = "https://search.nixos.org/options?query=%s";
+            }
+            {
+              name = "Nixos Packages";
+              keyword = ":packs";
+              url = "https://search.nixos.org/packages?query=%s";
             }
           ];
         }
