@@ -24,13 +24,13 @@
       ./onepassword
       ./rust
       ./screenshot
+      ./spotify
       ./ssh
       ./vscode
     ];
 
     home.packages = with pkgs; [
-      spotify
-      discord
+      #
     ];
   };
 }
