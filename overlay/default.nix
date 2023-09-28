@@ -8,6 +8,7 @@
       };
 
       mrpack-install = pkgs.callPackage ./packages/mrpack-install {};
+      wp-i3status-conf-rs = pkgs.callPackage ./packages/wp-i3status-conf-rs {};
 
       forge-installer = {
         forge-1-19-2 = pkgs.callPackage ./packages/minecraftforge-install/1.19.2.nix {};
