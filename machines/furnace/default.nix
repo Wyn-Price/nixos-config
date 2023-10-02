@@ -16,5 +16,4 @@
   };
 
   networking.hostName = "furnace";
-  networking.networkmanager.enable = true;
 }
