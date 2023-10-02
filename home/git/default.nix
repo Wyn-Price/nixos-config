@@ -9,15 +9,10 @@
         key = "A4086A465ED23C07";
     };
     extraConfig = {
-      core = {
-        whitespace = "trailing-space,space-before-tab";
-      };
-      apply = {
-        whitespace = "fix";
-      };
-      push = {
-        autoSetupRemote = true;
-      };
+      init.defaultBranch = "main";
+      core.whitespace = "trailing-space,space-before-tab";
+      apply.whitespace = "fix";
+      push.autoSetupRemote = true;
     };
   };
   home.packages = with pkgs; [
