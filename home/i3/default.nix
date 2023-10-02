@@ -44,6 +44,7 @@ in {
       };
       bars = [
         {
+          fonts.names = [ "DejaVu Sans Mono" "Font Awesome 6 Free" ];
           position = "bottom";
           statusCommand = "${pkgs.i3blocks}/bin/i3blocks -c ${blocksConfig}";
         }

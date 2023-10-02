@@ -14,6 +14,7 @@
       ./discord
       ./email
       ./firefox
+      ./fonts
       ./i3
       ./idea
       ./java
