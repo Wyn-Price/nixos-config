@@ -33,7 +33,6 @@
     ];
 
     home.packages = with pkgs; [
-      wp-i3status-conf-rs
     ];
   };
 }
