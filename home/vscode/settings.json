@@ -1,4 +1,5 @@
 {
   "window.menuBarVisibility": "hidden",
-  "vim.useSystemClipboard": true
+  "vim.useSystemClipboard": true,
+  "editor.formatOnSave": true
 }
