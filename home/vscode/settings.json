@@ -1,5 +1,6 @@
 {
   "window.menuBarVisibility": "hidden",
   "vim.useSystemClipboard": true,
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "zenMode.centerLayout": false
 }

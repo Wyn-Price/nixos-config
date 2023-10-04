@@ -9,6 +9,7 @@
     htop
     vim
 
+    busybox
     networkmanagerapplet
   ];
 
