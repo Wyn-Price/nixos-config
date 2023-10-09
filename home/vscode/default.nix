@@ -8,6 +8,7 @@
       bbenoist.nix
       shardulm94.trailing-spaces
       rust-lang.rust-analyzer
+      james-yu.latex-workshop
     ];
     keybindings = with builtins; fromJSON (readFile ./keybinds.json);
     userSettings = with builtins; fromJSON (readFile ./settings.json);

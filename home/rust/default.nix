@@ -6,6 +6,10 @@
     libiconv
     openssl
     pkgconfig
+
+    # Move to elsewhere?
+    hotspot
+    linuxKernel.packages.linux_6_1.perf
   ];
 
   home.sessionVariables = {
