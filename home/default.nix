@@ -17,6 +17,7 @@
       ./i3
       ./idea
       ./java
+      ./latex
       ./libreoffice
       ./logseq
       ./minecraft
