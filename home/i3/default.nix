@@ -33,6 +33,14 @@ in {
         "${modifier}+Shift+${right}" = "move right";
         "${modifier}+Shift+${up}" = "move up";
         "${modifier}+Shift+${down}" = "move down";
+
+        "XF86AudioPlay" = "exec ${pkgs.playerctl}/bin/playerctl play";
+        "XF86AudioPause" = "exec ${pkgs.playerctl}/bin/playerctl pause";
+        "XF86AudioNext" = "exec ${pkgs.playerctl}/bin/playerctl next";
+        "XF86AudioPrev" = "exec ${pkgs.playerctl}/bin/playerctl previous";
+        "XF86AudioRaiseVolume" = "exec ${pkgs.pulsemixer}/bin/pulsemixer --change-volume +5";
+        "XF86AudioLowerVolume" = "exec ${pkgs.pulsemixer}/bin/pulsemixer --change-volume -5";
+        "XF86AudioMute" = "exec ${pkgs.pulsemixer}/bin/pulsemixer --toggle-mute";
       };
       bars = [
         {
@@ -57,6 +65,7 @@ in {
     i3lock
     i3blocks
     xautolock
+    playerctl
   ];
 
 }

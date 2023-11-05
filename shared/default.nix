@@ -16,5 +16,6 @@
     ./audio
     ./bluetooth
     ./xserver
+    ./libvirtd
   ];
 }

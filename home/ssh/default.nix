@@ -16,7 +16,6 @@
         hostname = "cm30225.hpc.bath.ac.uk";
         user = "wap24";
         forwardAgent = true;
-        proxyJump = "uni.linux";
       };
 
       stoneslab = {
