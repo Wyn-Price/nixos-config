@@ -22,6 +22,17 @@
   };
   networking.firewall.allowedTCPPorts = [ 25565 ];
 
+  services._3proxy = {
+    enable = true;
+    services = [
+      {
+        type = "socks";
+        auth = [ "none" ];
+        bindAddress = "127.0.0.1";
+      }
+    ];
+  };
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;

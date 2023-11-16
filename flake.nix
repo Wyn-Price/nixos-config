@@ -41,6 +41,10 @@
           ./machines/bookshelf
           ./shared
           ./home
+          {
+            # Needed for vivado
+            programs.nix-ld.enable = true;
+          }
         ];
       };
 
