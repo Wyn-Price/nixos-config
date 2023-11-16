@@ -10,6 +10,7 @@
       extensions = with pkgs.nur.repos.rycee.firefox-addons; [
         onepassword-password-manager
         vimium-c
+        foxyproxy-standard
       ];
 
       bookmarks = [

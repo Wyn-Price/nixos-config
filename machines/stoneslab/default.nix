@@ -27,10 +27,17 @@
     services = [
       {
         type = "socks";
-        auth = [ "none" ];
+        auth = [ "strong" ];
         bindAddress = "127.0.0.1";
       }
     ];
+    usersFile = "/etc/3proxy.passwd";
+  };
+
+  environment.etc = {
+    "3proxy.passwd".text = ''
+      proxy:CR:$1$yu0XBwhY$/.F8fXyJ6C4wF3s95661Y.
+    '';
   };
 
   # Use the systemd-boot EFI boot loader.
