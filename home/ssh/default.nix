@@ -57,6 +57,17 @@
         ];
       };
 
+      pynq = {
+        hostname = "192.168.0.114";
+        user = "xilinx";
+      };
+
+      "pynq-ext" = {
+        hostname = "192.168.0.114";
+        proxyJump = "home.wynprice.com";
+        user = "xilinx";
+      };
+
     };
 
   };
