@@ -11,6 +11,7 @@
         onepassword-password-manager
         vimium-c
         foxyproxy-standard
+        darkreader
       ];
 
       bookmarks = [
