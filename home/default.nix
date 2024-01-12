@@ -29,6 +29,7 @@
       ./screenshot
       ./spotify
       ./ssh
+      ./uni
       ./vscode
     ];
 
