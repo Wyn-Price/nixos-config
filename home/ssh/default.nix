@@ -59,11 +59,13 @@
 
       pynq = {
         hostname = "192.168.0.114";
+        forwardAgent = true;
         user = "xilinx";
       };
 
       "pynq-ext" = {
         hostname = "192.168.0.114";
+        forwardAgent = true;
         proxyJump = "home.wynprice.com";
         user = "xilinx";
       };
