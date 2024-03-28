@@ -28,6 +28,7 @@
       ./rust
       ./screenshot
       ./spotify
+      # ./steam
       ./ssh
       ./uni
       ./vscode

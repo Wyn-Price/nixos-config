@@ -23,6 +23,7 @@ in {
         "${modifier}+Return" = "exec ${pkgs.alacritty}/bin/alacritty";
         "Print" = "exec ${pkgs.custom-scripts.wp-screenshot}/bin/wp-screenshot";
         "${modifier}+${alt}+l" = "exec ${pkgs.i3lock}/bin/i3lock -c 450041 -e";
+        "${modifier}+${alt}+0" = "exec ${pkgs.xdotool}/bin/xdotool mousemove 0 0";
 
         "${modifier}+${left}" = "focus left";
         "${modifier}+${right}" = "focus right";
