@@ -8,25 +8,34 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" ];
+# /dev/sdb1: BLOCK_SIZE="2048" UUID="1980-01-01-00-00-00-00" LABEL="nixos-minimal-22.11-x86_64" TYPE="iso9660" PTUUID="9fb6382f" PTTYPE="dos" PARTUUID="9fb6382f-01"
+# /dev/mapper/vg-swap: LABEL="swap" UUID="8f632f0d-ee5c-43cb-b9fb-0c2040785322" TYPE="swap"
+# /dev/sdb2: SEC_TYPE="msdos" LABEL_FATBOOT="EFIBOOT" LABEL="EFIBOOT" UUID="1234-5678" BLOCK_SIZE="512" TYPE="vfat" PARTUUID="9fb6382f-02"
+# /dev/mapper/vg-root: LABEL="root" UUID="d8158e90-e303-4374-8d42-1f35242e84af" BLOCK_SIZE="4096" TYPE="ext4"
+# /dev/loop0: TYPE="squashfs"
+# /dev/mapper/crypted-nixos: UUID="MR5Oom-3JdJ-6QTh-a03n-jod9-Q7zE-lrm8x5" TYPE="LVM2_member"
+# /dev/sda2: UUID="fa265e3b-feed-4862-a841-4eee27f0e257" TYPE="crypto_LUKS" PARTLABEL="Linux filesystem" PARTUUID="eb02b8e8-d653-447f-8a9d-6ce0f55bf0ce"
+# /dev/sda1: UUID="49FA-EF1D" BLOCK_SIZE="512" TYPE="vfat" PARTLABEL="EFI system partition" PARTUUID="f2413c4f-ea10-4f00-b803-8648c1e63f00"
+
+  boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "ahci" "usb_storage" "uas" "sd_mod" ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
-  boot.initrd.luks.devices."crypted".device = "/dev/disk/by-uuid/2a20531c-f552-4197-a542-51bcc797b2ed";
+  boot.initrd.luks.devices."crypted".device = "/dev/disk/by-uuid/fa265e3b-feed-4862-a841-4eee27f0e257";
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/e1b2ae43-dd71-4434-aa67-c31cd66e2a60";
+    { device = "/dev/disk/by-uuid/d8158e90-e303-4374-8d42-1f35242e84af";
       fsType = "ext4";
     };
 
   fileSystems."/boot/efi" =
-    { device = "/dev/disk/by-uuid/31A0-07AD";
+    { device = "/dev/disk/by-uuid/49FA-EF1D";
       fsType = "vfat";
     };
 
-  swapDevices =
-    [ { device = "/dev/disk/by-uuid/760c1785-1ebf-403f-9ea6-ce5be6a2d277"; }
-    ];
+  swapDevices = 
+  [ { device = "/dev/disk/by-uuid/8f632f0d-ee5c-43cb-b9fb-0c2040785322" ; } 
+  ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

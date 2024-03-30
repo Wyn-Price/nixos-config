@@ -16,9 +16,9 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
-  boot.initrd.secrets = {
-    "/crypto_keyfile.bin" = null;
-  };
+  # boot.initrd.secrets = {
+  #   "/crypto_keyfile.bin" = null;
+  # };
   networking.hostName = "bookshelf"; # Define your hostname.
 
   # Override the font size
