@@ -5,7 +5,10 @@
     enable = true;
     profiles.wp = {
       name = "Wyn Price";
-      search.default = "Google";
+      search = {
+        default = "Google";
+        force = true; # https://github.com/nix-community/home-manager/issues/3698
+      };
 
       extensions = with pkgs.nur.repos.rycee.firefox-addons; [
         onepassword-password-manager
