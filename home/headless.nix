@@ -6,7 +6,7 @@
       config.allowUnfree = true;
     };
 
-    imports = with pkgs; [
+    imports = [
       ./common.nix
     ];
 

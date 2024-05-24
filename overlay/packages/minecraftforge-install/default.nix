@@ -14,8 +14,8 @@ stdenv.mkDerivation rec {
   nativeBuildInputs = [ makeWrapper ];
 
   buildCommand = ''
-    mkdir -p $out/bin
-    install -Dm444 $src $out/share/java/$jarname
+    ${pkg.coreutils}/bin/mkdir -p $out/bin
+    ${pkg.coreutils}/bin/install -Dm444 $src $out/share/java/$jarname
     makeWrapper ${jre}/bin/java $out/bin/$pname \
       --add-flags "-jar $out/share/java/$jarname --installServer"
   '';

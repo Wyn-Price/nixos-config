@@ -25,6 +25,7 @@
       mrpack = ./mrpacks/okay_this_is_epic.mrpack;
     }
   };
+
   networking.firewall.allowedTCPPorts = [ 25565 ];
 
   services._3proxy = {
