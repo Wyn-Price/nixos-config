@@ -6,6 +6,7 @@
     settings = {
       PasswordAuthentication = false;
       KbdInteractiveAuthentication = false;
+      StreamLocalBindUnlink = true;
     };    
   };
 }

@@ -23,7 +23,7 @@
       enable = true;
       additionalInstallCommand = "${pkgs.forge-installer.forge-1-20-1}/bin/minecraftforge-installer-1.20.1";
       mrpack = ./mrpacks/okay_this_is_epic.mrpack;
-    }
+    };
   };
 
   networking.firewall.allowedTCPPorts = [ 25565 ];

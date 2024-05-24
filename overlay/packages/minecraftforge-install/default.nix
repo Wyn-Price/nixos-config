@@ -1,4 +1,4 @@
-{ lib, stdenv, makeWrapper, fetchurl, jre, forge }:
+{ pkgs, lib, stdenv, makeWrapper, fetchurl, jre, forge }:
 
 stdenv.mkDerivation rec {
   pname = "minecraftforge-installer-${forge.mc-version}";
@@ -14,8 +14,8 @@ stdenv.mkDerivation rec {
   nativeBuildInputs = [ makeWrapper ];
 
   buildCommand = ''
-    ${pkg.coreutils}/bin/mkdir -p $out/bin
-    ${pkg.coreutils}/bin/install -Dm444 $src $out/share/java/$jarname
+    ${pkgs.coreutils}/bin/mkdir -p $out/bin
+    ${pkgs.coreutils}/bin/install -Dm444 $src $out/share/java/$jarname
     makeWrapper ${jre}/bin/java $out/bin/$pname \
       --add-flags "-jar $out/share/java/$jarname --installServer"
   '';
