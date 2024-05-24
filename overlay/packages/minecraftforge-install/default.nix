@@ -1,14 +1,14 @@
-{ lib, stdenv, makeWrapper, fetchurl, jre }:
+{ lib, stdenv, makeWrapper, fetchurl, jre, forge }:
 
 stdenv.mkDerivation rec {
-  pname = "minecraftforge-installer-1.19.2";
-  version = "1.19.2-43.2.12";
+  pname = "minecraftforge-installer-${forge.mc-version}";
+  version = "${forge.mc-version}-${forge.forge-version}";
 
   jarname = "forge-${version}-installer.jar";
 
   src = fetchurl {
     url = "https://maven.minecraftforge.net/net/minecraftforge/forge/${version}/forge-${version}-installer.jar";
-    sha256 = "XKKGV0LmuumI0YZCK5dFoiDm2Vz6I5cDkvVlCBSjrEg=";
+    sha256 = forge.installer-sha256;
   };
 
   nativeBuildInputs = [ makeWrapper ];

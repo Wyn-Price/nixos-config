@@ -14,11 +14,16 @@
     enable = true;
     eula = true;
 
-    servers.create_vanilla = {
+    # servers.create_vanilla = {
+    #   enable = true;
+    #   additionalInstallCommand = "${pkgs.forge-installer.forge-1-19-2}/bin/minecraftforge-installer-1.19.2";
+    #   mrpack = ./mrpacks/create_vanilla.mrpack;
+    # };
+    servers.after_uni = {
       enable = true;
-      additionalInstallCommand = "${pkgs.forge-installer.forge-1-19-2}/bin/minecraftforge-installer-1.19.2";
-      mrpack = ./mrpacks/create_vanilla.mrpack;
-    };
+      additionalInstallCommand = "${pkgs.forge-installer.forge-1-20-1}/bin/minecraftforge-installer-1.20.1";
+      mrpack = ./mrpacks/okay_this_is_epic.mrpack;
+    }
   };
   networking.firewall.allowedTCPPorts = [ 25565 ];
 

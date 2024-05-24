@@ -11,7 +11,20 @@
       wp-i3status-conf-rs = pkgs.callPackage ./packages/wp-i3status-conf-rs {};
 
       forge-installer = {
-        forge-1-19-2 = pkgs.callPackage ./packages/minecraftforge-install/1.19.2.nix {};
+        forge-1-19-2 = pkgs.callPackage ./packages/minecraftforge-install {
+          forge = {
+            mc-version = "1.19.2";
+            forge-version = "43.2.12";
+            installer-sha256 = "sERrFPDcJm5L6OVS80lOMH8Qm5YH6yPM/jVgdoKSAeo=";
+          };
+        };
+        forge-1-20-1 = pkgs.callPackage ./packages/minecraftforge-install {
+          forge = {
+            mc-version = "1.20.1";
+            forge-version = "47.2.32";
+            installer-sha256 = "a2IQc8rGmvDjVbrEUxxP+xHtA+2FgPlq9lDd4K+N+0Y=";
+          };
+        };
       };
     }
   )
