@@ -1,4 +1,4 @@
 { config, pkgs, libs, ... }:
 {
-    services.xserver.xkbOptions = "caps:escape";
+    services.xserver.xkb.options = "caps:escape";
 }

@@ -5,7 +5,7 @@
     gcc
     libiconv
     openssl
-    pkgconfig
+    pkg-config
 
     # Move to elsewhere?
     hotspot
@@ -17,6 +17,6 @@
   ];
 
   home.sessionVariables = {
-      PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
+      PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkg-config";
   };
 }

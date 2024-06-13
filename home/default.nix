@@ -36,5 +36,7 @@
 
     home.packages = with pkgs; [
     ];
+
+    services.gpg-agent.pinentryPackage = pkgs.pinentry;
   };
 }

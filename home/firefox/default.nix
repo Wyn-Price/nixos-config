@@ -24,7 +24,7 @@
             {
               name = "Home Manager";
               keyword = ":hm";
-              url = "https://mipmip.github.io/home-manager-option-search/?query=%s";
+              url = "https://home-manager-options.extranix.com/?query=%s";
             }
             {
               name = "Nixos Options";
