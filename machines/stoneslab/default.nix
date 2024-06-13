@@ -28,6 +28,12 @@
 
   networking.firewall.allowedTCPPorts = [ 25565 ];
 
+  services.cfdyndns = {
+    enable = true;
+    records = [ "home.wynprice.com" ];
+    apiTokenFile = "/var/lib/wp/cfdyndns-api.key"; # Currently just has to be set after initilising machine, not great. TODO: secrets
+  };
+
   services._3proxy = {
     enable = true;
     services = [

@@ -60,9 +60,6 @@
 
           # Not neccessarily needed anymore
           "${nixpkgs}/nixos/modules/profiles/headless.nix"
-
-          # Update home.wynprice.com to this machine
-          ./modules/cfdyndns
         ];
       };
     };
