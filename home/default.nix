@@ -32,6 +32,7 @@
       ./ssh
       ./uni
       ./vscode
+      ./wii
     ];
 
     home.packages = with pkgs; [

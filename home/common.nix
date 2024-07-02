@@ -2,7 +2,12 @@
 {
   nixpkgs = {
     overlays = import ../overlay { config = config; };
-    config.allowUnfree = true;
+    config = {
+      allowUnfree = true;
+      permittedInsecurePackages = [
+        "electron-27.3.11" # For logseq
+      ];
+    };
   };
 
   home.stateVersion = "22.11";

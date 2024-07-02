@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 {
   home.packages = with pkgs; [
-    # steam
+    p7zip
+    wiimms-iso-tools
   ];
 }
