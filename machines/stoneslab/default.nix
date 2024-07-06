@@ -14,18 +14,20 @@
     enable = true;
     eula = true;
 
-    # servers.create_vanilla = {
-    #   enable = true;
-    #   additionalInstallCommand = "${pkgs.forge-installer.forge-1-19-2}/bin/minecraftforge-installer-1.19.2";
-    #   mrpack = ./mrpacks/create_vanilla.mrpack;
-    # };
-    # servers.after_uni = {
-    #   enable = true;
-    #   additionalInstallCommand = "${pkgs.forge-installer.forge-1-20-1}/bin/minecraftforge-installer-1.20.1";
-    #   mrpack = ./mrpacks/okay_this_is_epic.mrpack;
-    # };
+    servers.create_vanilla = {
+      enable = false;
+      additionalInstallCommand = "${pkgs.forge-installer.forge-1-19-2}/bin/minecraftforge-installer-1.19.2";
+      mrpack = ./mrpacks/create_vanilla.mrpack;
+    };
+
+    servers.after_uni = {
+      enable = false;
+      additionalInstallCommand = "${pkgs.forge-installer.forge-1-20-1}/bin/minecraftforge-installer-1.20.1";
+      mrpack = ./mrpacks/okay_this_is_epic.mrpack;
+    };
+
     servers.crash_landing = {
-      enable = true;
+      enable = false;
       java = pkgs.jdk8;
       modInstallCommand = "
         ${pkgs.unzip}/bin/unzip ${./mrpacks/crashlanding.zip} -d .tmp_extract
@@ -45,6 +47,26 @@
 
         ${pkgs.coreutils}/bin/ln -fs ServerStart.sh run.sh
         ${pkgs.coreutils}/bin/chmod +x run.sh
+      ";
+    };
+
+
+    servers.project_ozone_3 = {
+      enable = true;
+      java = pkgs.jdk8;
+      modInstallCommand = let
+        po3_server_zip = builtins.fetchzip {
+            url = "https://edge.forgecdn.net/files/4345/112/PO3 - 3.4.11Fserver.zip";
+            hash = "";
+        };
+      in
+      "
+        ${pkgs.coreutils}/bin/cp -rf ${po3_server_zip}/* .
+        ${pkgs.coreutils}/bin/chmod +x run.sh
+
+        # run.sh will be ran with the correct version of java
+        echo java -Xmx6144M -Xms1024M -jar forge-1.12.2-14.23.5.2860.jar nogui > run.sh
+        chmod +x run.sh
       ";
     };
   };
