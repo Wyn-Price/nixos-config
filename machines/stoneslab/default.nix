@@ -19,11 +19,34 @@
     #   additionalInstallCommand = "${pkgs.forge-installer.forge-1-19-2}/bin/minecraftforge-installer-1.19.2";
     #   mrpack = ./mrpacks/create_vanilla.mrpack;
     # };
-    servers.after_uni = {
+    # servers.after_uni = {
+    #   enable = true;
+    #   additionalInstallCommand = "${pkgs.forge-installer.forge-1-20-1}/bin/minecraftforge-installer-1.20.1";
+    #   mrpack = ./mrpacks/okay_this_is_epic.mrpack;
+    # };
+    servers.crash_landing = {
       enable = true;
-      additionalInstallCommand = "${pkgs.forge-installer.forge-1-20-1}/bin/minecraftforge-installer-1.20.1";
-      mrpack = ./mrpacks/okay_this_is_epic.mrpack;
-    };
+      java = pkgs.jdk8;
+      modInstallCommand = "
+        ${pkgs.unzip}/bin/unzip ${./mrpacks/crashlanding.zip} -d .tmp_extract
+
+        cd .tmp_extract
+
+        # Fully declarative, shold be replaced every time
+        cp -r config FTBServer-1.6.4-965.jar libraries mods server.properties ServerStart.sh ../
+
+        # Only copy world if it doesnt exist
+        if [ -d ../world ]; then
+          cp -r world ../
+        fi
+
+        cd ..
+        rm -r .tmp_extract
+
+        ln -s ServerStart.sh run.sh
+        chmod +x run.sh
+      ";
+    }
   };
 
   networking.firewall.allowedTCPPorts = [ 25565 ];

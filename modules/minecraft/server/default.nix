@@ -10,8 +10,17 @@ let
 
       mrpack = mkOption {
         type = types.path;
+        default = null;
         description = lib.mdDoc ''
           The location of the mrpack file to run the server on.
+        '';
+      };
+
+      modInstallCommand = mkOption {
+        type = types.str;
+        default = "";
+        description = lib.mdDoc ''
+          The command to run to install the mods, if any.
         '';
       };
 
@@ -118,8 +127,10 @@ in
       let
         service-name = "minecraft-server-mrpack-${name}";
         directory = "${cfg.baseDir}/${name}";
-        mrPackInstall = "${pkgs.mrpack-install}/bin/mrpack-install ${server.mrpack} --server-dir ${directory} --server-file run.sh";
         stdInFile = "/run/minecraft-servers/${service-name}.stdin";
+        modInstallCommand = if server.mrpack == null
+          then  "${pkgs.mrpack-install}/bin/mrpack-install ${server.mrpack} --server-dir ${directory} --server-file run.sh"
+          else server.modInstallCommand;
       in
       mkIf server.enable {
         sockets.${service-name} = {
@@ -185,7 +196,7 @@ in
             ${pkgs.coreutils}/bin/rm -rf mods/ eula.txt
 
             ${server.additionalInstallCommand}
-            ${mrPackInstall}
+            ${modInstallCommand}
 
             ${pkgs.coreutils}/bin/ln -sf ${eulaFile} eula.txt
           '';
