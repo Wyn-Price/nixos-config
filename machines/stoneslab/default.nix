@@ -33,20 +33,20 @@
         cd .tmp_extract
 
         # Fully declarative, shold be replaced every time
-        cp -r config FTBServer-1.6.4-965.jar libraries mods server.properties ServerStart.sh ../
+        ${pkgs.coreutils}/bin/cp -rf config FTBServer-1.6.4-965.jar libraries mods server.properties ServerStart.sh ../
 
         # Only copy world if it doesnt exist
-        if [ -d ../world ]; then
-          cp -r world ../
+        if [ ! -d ../world ]; then
+          ${pkgs.coreutils}/bin/cp -r world ../
         fi
 
         cd ..
-        rm -r .tmp_extract
+        ${pkgs.coreutils}/bin/rm -r .tmp_extract
 
-        ln -s ServerStart.sh run.sh
-        chmod +x run.sh
+        ${pkgs.coreutils}/bin/ln -fs ServerStart.sh run.sh
+        ${pkgs.coreutils}/bin/chmod +x run.sh
       ";
-    }
+    };
   };
 
   networking.firewall.allowedTCPPorts = [ 25565 ];

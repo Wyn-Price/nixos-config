@@ -9,7 +9,7 @@ let
       enable = mkEnableOption "Minecraft server service";
 
       mrpack = mkOption {
-        type = types.path;
+        type = types.nullOr types.path;
         default = null;
         description = lib.mdDoc ''
           The location of the mrpack file to run the server on.
@@ -128,7 +128,7 @@ in
         service-name = "minecraft-server-mrpack-${name}";
         directory = "${cfg.baseDir}/${name}";
         stdInFile = "/run/minecraft-servers/${service-name}.stdin";
-        modInstallCommand = if server.mrpack == null
+        modInstallCommand = if server.mrpack != null
           then  "${pkgs.mrpack-install}/bin/mrpack-install ${server.mrpack} --server-dir ${directory} --server-file run.sh"
           else server.modInstallCommand;
       in
