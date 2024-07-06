@@ -45,6 +45,8 @@
 
         ${pkgs.coreutils}/bin/ln -fs ServerStart.sh run.sh
         ${pkgs.coreutils}/bin/chmod +x run.sh
+
+        ${pkgs.coreutils}/bin/rm -f banned-players.txt
       ";
     };
   };
