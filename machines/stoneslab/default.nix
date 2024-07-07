@@ -57,18 +57,19 @@
       enable = true;
       java = pkgs.jdk8;
       modInstallCommand = let
-        po3_server_zip = builtins.fetchzip {
-            url = "https://edge.forgecdn.net/files/4345/112/PO3 - 3.4.11Fserver.zip";
-            hash = "";
+        po3_server_zip = pkgs.fetchzip {
+            url = "https://edge.forgecdn.net/files/4345/112/PO3%20-%203.4.11Fserver.zip";
+            hash = "sha256-+9QtS673aAkoYZ1R1fvb4ANWH6nJWG6cZvmEWsYjjzE=";
+            stripRoot = false;
         };
       in
       "
         ${pkgs.coreutils}/bin/cp -rf ${po3_server_zip}/* .
-        ${pkgs.coreutils}/bin/chmod +x run.sh
+        ${pkgs.coreutils}/bin/chmod -R +w .
 
         # run.sh will be ran with the correct version of java
-        echo java -Xmx6144M -Xms1024M -jar forge-1.12.2-14.23.5.2860.jar nogui > run.sh
-        chmod +x run.sh
+        ${pkgs.coreutils}/bin/echo java -Xmx6144M -Xms1024M -jar forge-1.12.2-14.23.5.2860.jar nogui > run.sh
+        ${pkgs.coreutils}/bin/chmod +x run.sh
       ";
     };
   };
