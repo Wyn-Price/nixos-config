@@ -207,6 +207,7 @@ in
 
             ${pkgs.coreutils}/bin/ln -sf ${eulaFile} eula.txt
             ${pkgs.coreutils}/bin/cp -f ${serverPropertiesFile} server.properties
+            ${pkgs.coreutils}/bin/chmod +w server.properties
           '';
         };
       }
