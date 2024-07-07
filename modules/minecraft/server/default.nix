@@ -133,6 +133,7 @@ in
           then  "${pkgs.mrpack-install}/bin/mrpack-install ${server.mrpack} --server-dir ${directory} --server-file run.sh"
           else server.modInstallCommand;
 
+	cfgToString = v: if builtins.isBool v then boolToString v else toString v;
         serverPropertiesFile = pkgs.writeText "server.properties" (''
           # server.properties managed by NixOS configuration
         '' + concatStringsSep "\n" (mapAttrsToList
