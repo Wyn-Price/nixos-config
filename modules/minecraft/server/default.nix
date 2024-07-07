@@ -36,7 +36,7 @@ let
         type = types.str;
         default = "./run.sh";
         description = lib.mdDoc ''
-          The command to run to start the server. Defaults to ./start
+          The command to run to start the server. Defaults to ./run.sh
         '';
       };
 
@@ -55,6 +55,7 @@ let
           The forge installer package to use, if any.
         '';
       };
+
     };
   };
 
@@ -131,6 +132,11 @@ in
         modInstallCommand = if server.mrpack != null
           then  "${pkgs.mrpack-install}/bin/mrpack-install ${server.mrpack} --server-dir ${directory} --server-file run.sh"
           else server.modInstallCommand;
+
+        serverPropertiesFile = pkgs.writeText "server.properties" (''
+          # server.properties managed by NixOS configuration
+        '' + concatStringsSep "\n" (mapAttrsToList
+          (n: v: "${n}=${cfgToString v}") server.serverProperties));
       in
       mkIf server.enable {
         sockets.${service-name} = {
@@ -199,6 +205,7 @@ in
             ${modInstallCommand}
 
             ${pkgs.coreutils}/bin/ln -sf ${eulaFile} eula.txt
+            ${pkgs.coreutils}/bin/cp -f ${serverPropertiesFile} server.properties
           '';
         };
       }
