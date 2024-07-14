@@ -62,10 +62,17 @@
             hash = "sha256-+9QtS673aAkoYZ1R1fvb4ANWH6nJWG6cZvmEWsYjjzE=";
             stripRoot = false;
         };
+        po3_agricraft_override = pkgs.fetchurl {
+            url = "https://github.com/Wyn-Price/AgriCraft/releases/download/1.12.2-b2-patched/agricraft-2.12.0-1.12.2-b2.jar";
+            hash = "";
+        };
       in
       "
         ${pkgs.coreutils}/bin/cp -rf ${po3_server_zip}/* .
         ${pkgs.coreutils}/bin/chmod -R +w .
+
+        # Override broken agricraft (EnderIO farmer intergration crash)
+        ${pkgs.coreutils}/bin/cp -rf ${po3_agricraft_override} mods/agricraft-2.12.0-1.12.2-b2.jar
 
         # run.sh will be ran with the correct version of java
         ${pkgs.coreutils}/bin/echo java -Xmx6144M -Xms1024M -jar forge-1.12.2-14.23.5.2860.jar nogui > run.sh
