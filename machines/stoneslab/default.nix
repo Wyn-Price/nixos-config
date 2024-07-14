@@ -64,7 +64,7 @@
         };
         po3_agricraft_override = pkgs.fetchurl {
             url = "https://github.com/Wyn-Price/AgriCraft/releases/download/1.12.2-b2-patched/agricraft-2.12.0-1.12.2-b2.jar";
-            hash = "";
+            hash = "sha256-GTWg6a4q/y+aATau5MCKrTcPY7sbESNHGOI4k+94tVU=";
         };
       in
       "
