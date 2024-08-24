@@ -19,7 +19,7 @@
       };
 
       stoneslab = {
-        hostname = "192.168.1.87";
+        hostname = "192.168.1.163";
         forwardAgent = true;
         remoteForwards = [
           {

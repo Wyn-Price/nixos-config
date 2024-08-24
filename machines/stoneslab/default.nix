@@ -82,6 +82,28 @@
         level-type="botania-skyblock";
       };
     };
+
+    servers.create_above_beyond = {
+      enable = true;
+      java = pkgs.jdk16;
+      modInstallCommand = let
+        server_zip = pkgs.fetchzip {
+          url = "https://mediafilez.forgecdn.net/files/3567/576/Above%20and%20Beyond-1.3-Server.zip";
+          hash = "";
+          stripRoot = false;
+        };
+      in
+      "
+        ${pkgs.coreutils}/bin/cp -rf ${po3_server_zip}/* .
+        ${pkgs.coreutils}/bin/chmod -R +w .
+
+        ${pkgs.jdk16}/bin/java -jar forge-1.16.5-36.2.20.jar --installServer
+
+        # run.sh will be ran with the correct version of java
+        ${pkgs.coreutils}/bin/echo java -Xmx6144M -Xms1024M -jar forge-1.12.2-14.23.5.2860.jar nogui > run.sh
+        ${pkgs.coreutils}/bin/chmod +x run.sh
+      ";
+    };
   };
 
   networking.firewall.allowedTCPPorts = [ 25565 ];
