@@ -25,6 +25,13 @@
             installer-sha256 = "a2IQc8rGmvDjVbrEUxxP+xHtA+2FgPlq9lDd4K+N+0Y=";
           };
         };
+        forge-1-16-5 = pkgs.callPackage ./packages/minecraftforge-install {
+          forge = {
+            mc-version = "1.16.5";
+            forge-version = "36.2.26";
+            installer-sha256 = "yXVtSlcdUWqsAnTK3w18HTFX++MTkxA3Pgmx4iyEJ/s=";
+          };
+        };
       };
     }
   )

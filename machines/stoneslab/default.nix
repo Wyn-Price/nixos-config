@@ -54,7 +54,7 @@
 
 
     servers.project_ozone_3 = {
-      enable = true;
+      enable = false;
       java = pkgs.jdk8;
       modInstallCommand = let
         po3_server_zip = pkgs.fetchzip {
@@ -85,22 +85,21 @@
 
     servers.create_above_beyond = {
       enable = true;
-      java = pkgs.jdk16;
+      java = pkgs.jdk8;
+      additionalInstallCommand = "${pkgs.forge-installer.forge-1-16-5}/bin/minecraftforge-installer-1.16.5";
       modInstallCommand = let
         server_zip = pkgs.fetchzip {
           url = "https://mediafilez.forgecdn.net/files/3567/576/Above%20and%20Beyond-1.3-Server.zip";
-          hash = "";
+          hash = "sha256-B/fbtYpgGwj+Tcr1gAIpIH60leOrAkzcfIARZQFl5Yk=";
           stripRoot = false;
         };
       in
       "
-        ${pkgs.coreutils}/bin/cp -rf ${po3_server_zip}/* .
+        ${pkgs.coreutils}/bin/cp -rf ${server_zip}/* .
         ${pkgs.coreutils}/bin/chmod -R +w .
 
-        ${pkgs.jdk16}/bin/java -jar forge-1.16.5-36.2.20.jar --installServer
-
         # run.sh will be ran with the correct version of java
-        ${pkgs.coreutils}/bin/echo java -Xmx6144M -Xms1024M -jar forge-1.12.2-14.23.5.2860.jar nogui > run.sh
+        ${pkgs.coreutils}/bin/echo java -Xmx6144M -Xms1024M -jar forge-1.16.5-36.2.26.jar nogui > run.sh
         ${pkgs.coreutils}/bin/chmod +x run.sh
       ";
     };
