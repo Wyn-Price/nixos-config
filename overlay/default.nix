@@ -32,6 +32,13 @@
             installer-sha256 = "yXVtSlcdUWqsAnTK3w18HTFX++MTkxA3Pgmx4iyEJ/s=";
           };
         };
+        forge-1-21-8 = pkgs.callPackage ./packages/minecraftforge-install {
+          forge = {
+            mc-version = "1.21.8";
+            forge-version = "58.1.0";
+            installer-sha256 = "jeh6IYS6WL3uwxvAtY2wEH3w/I1ORwRRbFVR92YsUcc=";
+          };
+        };
       };
     }
   )

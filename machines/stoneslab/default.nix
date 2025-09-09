@@ -84,7 +84,7 @@
     };
 
     servers.create_above_beyond = {
-      enable = true;
+      enable = false;
       java = pkgs.jdk8;
       additionalInstallCommand = "${pkgs.forge-installer.forge-1-16-5}/bin/minecraftforge-installer-1.16.5";
       modInstallCommand = let
@@ -103,15 +103,21 @@
         ${pkgs.coreutils}/bin/chmod +x run.sh
       ";
     };
+
+    servers.milo_maybe_vanilla = {
+      enable = true;
+      java = pkgs.openjdk21;
+      additionalInstallCommand = "${pkgs.forge-installer.forge-1-21-8}/bin/minecraftforge-installer-1.21.8";
+    };
   };
 
   networking.firewall.allowedTCPPorts = [ 25565 ];
 
-  services.cfdyndns = {
-    enable = true;
-    records = [ "home.wynprice.com" ];
-    apiTokenFile = "/var/lib/wp/cfdyndns-api.key"; # Currently just has to be set after initilising machine, not great. TODO: secrets
-  };
+#  services.cfdyndns = {
+#    enable = true;
+#    records = [ "home.wynprice.com" ];
+#    apiTokenFile = "/var/lib/wp/cfdyndns-api.key"; # Currently just has to be set after initilising machine, not great. TODO: secrets
+#  };
 
   services._3proxy = {
     enable = true;
