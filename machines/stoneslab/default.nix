@@ -45,11 +45,9 @@
         cd ..
         ${pkgs.coreutils}/bin/rm -r .tmp_extract
 
-        ${pkgs.coreutils}/bin/ln -fs ServerStart.sh run.sh
-        ${pkgs.coreutils}/bin/chmod +x run.sh
-
         ${pkgs.coreutils}/bin/rm -f banned-players.txt
       ";
+      runCommand="ServerStart.sh";
     };
 
 
@@ -73,11 +71,8 @@
 
         # Override broken agricraft (EnderIO farmer intergration crash)
         ${pkgs.coreutils}/bin/cp -rf ${po3_agricraft_override} mods/agricraft-2.12.0-1.12.2-b2.jar
-
-        # run.sh will be ran with the correct version of java
-        ${pkgs.coreutils}/bin/echo java -Xmx6144M -Xms1024M -jar forge-1.12.2-14.23.5.2860.jar nogui > run.sh
-        ${pkgs.coreutils}/bin/chmod +x run.sh
       ";
+      runCommand = "java -Xmx6144M -Xms1024M -jar forge-1.12.2-14.23.5.2860.jar nogui";
       serverProperties = {
         level-type="botania-skyblock";
       };
@@ -97,17 +92,21 @@
       "
         ${pkgs.coreutils}/bin/cp -rf ${server_zip}/* .
         ${pkgs.coreutils}/bin/chmod -R +w .
-
-        # run.sh will be ran with the correct version of java
-        ${pkgs.coreutils}/bin/echo java -Xmx6144M -Xms1024M -jar forge-1.16.5-36.2.26.jar nogui > run.sh
-        ${pkgs.coreutils}/bin/chmod +x run.sh
       ";
+      runCommand = "java -Xmx6144M -Xms1024M -jar forge-1.16.5-36.2.26.jar nogui";
     };
 
     servers.milo_maybe_vanilla = {
       enable = true;
       java = pkgs.openjdk21;
-      additionalInstallCommand = "${pkgs.forge-installer.forge-1-21-8}/bin/minecraftforge-installer-1.21.8";
+      additionalInstallCommand = "${pkgs.fabric-installer}/bin/fabric-installer server -mcversion 1.21.8 -loader 0.17.2 -downloadMinecraft";
+      runCommand = "java -Xmx6144M -Xms1024M -jar fabric-server-launch.jar";
+      serverProperties = {
+        motd="miles burny";
+        view-distance="15";
+        white-list="true";
+        enable-command-block="true";
+      };
     };
   };
 
@@ -118,6 +117,14 @@
 #    records = [ "home.wynprice.com" ];
 #    apiTokenFile = "/var/lib/wp/cfdyndns-api.key"; # Currently just has to be set after initilising machine, not great. TODO: secrets
 #  };
+
+   services.cloudflare-dyndns = {
+     enable = true;
+     ipv6 = true;
+     domains = [ "home.wynprice.com" ];
+     apiTokenFile = "/var/lib/wp/cfdyndns-api.key";
+   };
+ 
 
   services._3proxy = {
     enable = true;

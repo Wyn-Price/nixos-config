@@ -40,6 +40,14 @@ let
         '';
       };
 
+      runCommand = mkOption {
+        type = types.nullOr types.str;
+        default = null;
+        description = lib.mdDoc ''
+          The command to run to start the server. If not set, expects a run.sh to already exist.
+        '';
+      };
+
       serverProperties = mkOption {
         type = with types; attrsOf (oneOf [ bool int str ]);
         default = {};
@@ -133,7 +141,7 @@ in
           then  "${pkgs.mrpack-install}/bin/mrpack-install ${server.mrpack} --server-dir ${directory} --server-file run.sh"
           else server.modInstallCommand;
 
-	cfgToString = v: if builtins.isBool v then boolToString v else toString v;
+        cfgToString = v: if builtins.isBool v then boolToString v else toString v;
         serverPropertiesFile = pkgs.writeText "server.properties" (''
           # server.properties managed by NixOS configuration
         '' + concatStringsSep "\n" (mapAttrsToList
@@ -200,15 +208,16 @@ in
             cd ${directory}
 
             # Declarative files
-            ${pkgs.coreutils}/bin/rm -rf mods/ eula.txt
+            ${pkgs.coreutils}/bin/rm -rf mods/ eula.txt server.properties run.sh
 
             ${server.additionalInstallCommand}
             ${modInstallCommand}
 
             ${pkgs.coreutils}/bin/ln -sf ${eulaFile} eula.txt
-            ${pkgs.coreutils}/bin/cp -f ${serverPropertiesFile} server.properties
-            ${pkgs.coreutils}/bin/chmod +w server.properties
-          '';
+            ${pkgs.coreutils}/bin/install --mode=600 ${serverPropertiesFile} server.properties
+         '' + lib.optionalString (server.runCommand != null) ''
+            ${pkgs.coreutils}/bin/install --mode=700 ${pkgs.writeText "run.sh" server.runCommand} run.sh
+         '';
         };
       }
     ) cfg.servers);
