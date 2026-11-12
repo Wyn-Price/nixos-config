@@ -20,10 +20,15 @@
 
   boot.initrd.luks.devices."luks-2b7becdc-57bd-43d4-97dc-8c7a93abc3d1".device = "/dev/disk/by-uuid/2b7becdc-57bd-43d4-97dc-8c7a93abc3d1";
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/8028-5679";
-      fsType = "vfat";
-    };
+  fileSystems."/efi" = {
+    device = "/dev/disk/by-uuid/8028-5679";
+    fsType = "vfat";
+  };
+
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/ACC2-BB24";
+    fsType = "vfat";
+  };
 
   swapDevices = [ ];
 

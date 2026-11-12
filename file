@@ -1,0 +1,72 @@
+System:
+      Firmware: UEFI 2.70 (American Megatrends 5.17)
+ Firmware Arch: x64
+   Secure Boot: disabled (setup)
+  TPM2 Support: yes
+  Measured UKI: no
+  Boot into FW: supported
+
+Current Boot Loader:
+      Product: systemd-boot 256.4
+     Features: ✓ Boot counting
+               ✓ Menu timeout control
+               ✓ One-shot menu timeout control
+               ✓ Default entry control
+               ✓ One-shot entry control
+               ✓ Support for XBOOTLDR partition
+               ✓ Support for passing random seed to OS
+               ✓ Load drop-in drivers
+               ✓ Support Type #1 sort-key field
+               ✓ Support @saved pseudo-entry
+               ✓ Support Type #1 devicetree field
+               ✓ Enroll SecureBoot keys
+               ✓ Retain SHIM protocols
+               ✓ Menu can be disabled
+               ✓ Boot loader sets ESP information
+          ESP: /dev/disk/by-partuuid/61249097-feca-4291-a34a-9ff95de71ff1
+         File: └─/EFI/SYSTEMD/SYSTEMD-BOOTX64.EFI
+
+Random Seed:
+ System Token: set
+       Exists: yes
+
+Available Boot Loaders on ESP:
+          ESP: /boot (/dev/disk/by-partuuid/61249097-feca-4291-a34a-9ff95de71ff1)
+         File: ├─/EFI/systemd/systemd-boot-fallbackx64.efi (systemd-boot 256.4)
+               ├─/EFI/systemd/systemd-bootx64.efi (systemd-boot 262)
+               └─/EFI/BOOT/BOOTX64.EFI (systemd-boot 262)
+
+Boot Loaders Listed in EFI Variables:
+        Title: Linux Boot Manager
+           ID: 0x0002
+       Status: active, boot-order
+    Partition: /dev/disk/by-partuuid/61249097-feca-4291-a34a-9ff95de71ff1
+         File: └─/EFI/SYSTEMD/SYSTEMD-BOOTX64.EFI
+
+        Title: UEFI OS
+           ID: 0x0003
+       Status: active, boot-order
+    Partition: /dev/disk/by-partuuid/61249097-feca-4291-a34a-9ff95de71ff1
+         File: └─/EFI/BOOT/BOOTX64.EFI
+
+        Title: NixOS-boot
+           ID: 0x0000
+       Status: active, boot-order
+    Partition: /dev/disk/by-partuuid/61249097-feca-4291-a34a-9ff95de71ff1
+         File: └─/EFI/NIXOS-BOOT/GRUBX64.EFI
+
+        Title: Windows Boot Manager
+           ID: 0x0005
+       Status: active, boot-order
+    Partition: /dev/disk/by-partuuid/61249097-feca-4291-a34a-9ff95de71ff1
+         File: └─/EFI/MICROSOFT/BOOT/BOOTMGFW.EFI
+
+Boot Loader Entries:
+        $BOOT: /boot (/dev/disk/by-partuuid/61249097-feca-4291-a34a-9ff95de71ff1)
+        token: nixos
+
+Default Boot Loader Entry:
+         type: Reported by Boot Loader
+        title: nixos-generation-215.conf
+           id: nixos-generation-215.conf
+       source: /sys/firmware/efi/efivars/LoaderEntries-4a67b082-0a4c-41cf-b6c7-440b29bb8c4f
