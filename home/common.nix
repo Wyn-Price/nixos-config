@@ -1,7 +1,10 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 {
   nixpkgs = {
-    overlays = import ../overlay { config = config; };
+    overlays =
+      [ inputs.nur.overlays.default ]
+      ++ import ../overlay;
+
     config = {
       allowUnfree = true;
       permittedInsecurePackages = [

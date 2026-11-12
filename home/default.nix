@@ -1,11 +1,6 @@
 { config, pkgs, ... }:
 {
   home-manager.users.wp = {
-    nixpkgs = {
-      overlays = import ../overlay { config = config; };
-      config.allowUnfree = true;
-    };
-
     imports = with pkgs; [
       ./common.nix
 
@@ -16,11 +11,11 @@
       ./firefox
       ./fonts
       ./i3
-      ./idea
+#      ./idea
       ./java
       ./latex
       ./libreoffice
-      ./logseq
+#      ./logseq
       ./minecraft
       ./node
       ./obs-studio
@@ -30,7 +25,7 @@
       ./spotify
       # ./steam
       ./ssh
-      ./uni
+#      ./uni
       ./vscode
       ./wii
     ];
@@ -38,6 +33,7 @@
     home.packages = with pkgs; [
     ];
 
-    services.gpg-agent.pinentryPackage = pkgs.pinentry;
+    services.gpg-agent.pinentry.package = pkgs.pinentry-curses;
+
   };
 }

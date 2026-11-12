@@ -1,13 +1,16 @@
+
 {
   description = "Wyn Price NixOS configuration";
 
   inputs = {
     nur = {
-      url = github:nix-community/NUR;
+      url = "github:nix-community/NUR";
     };
+
     nixpkgs = {
       url = "nixpkgs/nixos-unstable";
     };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -17,51 +20,48 @@
   outputs = { self, nixpkgs, nur, home-manager }@inputs:
   let
     system = "x86_64-linux";
-    pkgs = nixpkgs.legacyPackages.${system};
+
+    mkHost = modules: nixpkgs.lib.nixosSystem {
+      inherit system;
+
+      specialArgs = {
+        inherit inputs;
+      };
+
+      modules = [
+        ./modules
+        nur.modules.nixos.default
+        home-manager.nixosModules.home-manager
+      ] ++ modules;
+    };
+
   in {
     nixosConfigurations = {
-      furnace = nixpkgs.lib.nixosSystem {
-        modules = [
-          ./modules
-          nur.nixosModules.nur
-          home-manager.nixosModules.home-manager
+      furnace = mkHost [
+        ./machines/furnace
+        ./shared
+        ./home
+      ];
 
-          ./machines/furnace
-          ./shared
-          ./home
-        ];
-      };
+      bookshelf = mkHost [
+        ./machines/bookshelf
+        ./shared
+        ./home
 
-      bookshelf = nixpkgs.lib.nixosSystem {
-        modules = [
-          ./modules
-          nur.nixosModules.nur
-          home-manager.nixosModules.home-manager
+        {
+          # Needed for Vivado
+          programs.nix-ld.enable = true;
+        }
+      ];
 
-          ./machines/bookshelf
-          ./shared
-          ./home
-          {
-            # Needed for vivado
-            programs.nix-ld.enable = true;
-          }
-        ];
-      };
+      stoneslab = mkHost [
+        ./machines/stoneslab
+        ./shared/headless.nix
+        ./home/headless.nix
 
-      stoneslab = nixpkgs.lib.nixosSystem {
-        modules = [
-          ./modules
-          nur.nixosModules.nur
-          home-manager.nixosModules.home-manager
-
-          ./machines/stoneslab
-          ./shared/headless.nix
-          ./home/headless.nix
-
-          # Not neccessarily needed anymore
-          "${nixpkgs}/nixos/modules/profiles/headless.nix"
-        ];
-      };
+        # Not necessarily needed anymore
+        "${nixpkgs}/nixos/modules/profiles/headless.nix"
+      ];
     };
   };
 }

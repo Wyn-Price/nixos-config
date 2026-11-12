@@ -1,11 +1,6 @@
 { config, pkgs, ... }:
 {
   home-manager.users.wp = {
-    nixpkgs = {
-      overlays = import ../overlay { config = config; };
-      config.allowUnfree = true;
-    };
-
     imports = [
       ./common.nix
     ];

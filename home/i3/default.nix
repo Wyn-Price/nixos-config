@@ -43,13 +43,13 @@ in {
         "XF86AudioLowerVolume" = "exec ${pkgs.pulsemixer}/bin/pulsemixer --change-volume -5";
         "XF86AudioMute" = "exec ${pkgs.pulsemixer}/bin/pulsemixer --toggle-mute";
       };
-      bars = [
-        {
-          fonts.names = [ "DejaVu Sans Mono" "Font Awesome 6 Free" ];
-          position = "bottom";
-          statusCommand = "${pkgs.i3blocks}/bin/i3blocks -c ${blocksConfig}";
-        }
-      ];
+#      bars = [
+#        {
+#          fonts.names = [ "DejaVu Sans Mono" "Font Awesome 6 Free" ];
+#          position = "bottom";
+#          statusCommand = "${pkgs.i3blocks}/bin/i3blocks -c ${blocksConfig}";
+#        }
+#      ];
     };
     extraConfig = ''
       exec ${pkgs.xautolock}/bin/xautolock \

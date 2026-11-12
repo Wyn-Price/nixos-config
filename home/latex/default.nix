@@ -4,7 +4,7 @@
     texlive.combined.scheme-full
   ];
 
-  programs.vscode.extensions = with pkgs.vscode-extensions; [
+  programs.vscode.profiles.default.extensions = with pkgs.vscode-extensions; [
     james-yu.latex-workshop
     streetsidesoftware.code-spell-checker
   ];

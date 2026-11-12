@@ -1,4 +1,3 @@
-{ config, ... }:
 [
   (pkgs: super:
     {
@@ -42,6 +41,5 @@
       };
     }
   )
-  # Pass nur to pkgs
-  (self: super: { nur = config.nur; })
 ]
+

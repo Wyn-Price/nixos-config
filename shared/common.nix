@@ -1,9 +1,16 @@
-{ config, pkgs, libs, ... }:
+{ config, pkgs, libs, inputs, ... }:
 {
   nixpkgs = {
-    overlays = import ../overlay { config = config; };
+    overlays =
+      [ inputs.nur.overlays.default ]
+      ++ import ../overlay;
     config.allowUnfree = true;
   };
+
+  home-manager.extraSpecialArgs = {
+    inherit inputs;
+  };
+
   environment.systemPackages = with pkgs; [
     home-manager
     htop
@@ -18,7 +25,7 @@
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;
 
-  nix.settings.experimental-features = "nix-command flakes";
+  nix.settings.experimental-features = ["nix-command flakes"];
 
   programs.fish.enable = true;
 
