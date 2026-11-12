@@ -5,21 +5,8 @@
     enable = true;
 
     matchBlocks = {
-
-      "uni.linux" = {
-        hostname = "linux.bath.ac.uk";
-        user = "wap24";
-        forwardAgent = true;
-      };
-
-      "uni.parallel" = {
-        hostname = "cm30225.hpc.bath.ac.uk";
-        user = "wap24";
-        forwardAgent = true;
-      };
-
       stoneslab = {
-        hostname = "192.168.1.87";
+        hostname = "192.168.69.1";
         forwardAgent = true;
         remoteForwards = [
           {
@@ -56,21 +43,6 @@
           }
         ];
       };
-
-      pynq = {
-        hostname = "192.168.0.114";
-        forwardAgent = true;
-        user = "xilinx";
-      };
-
-      "pynq-ext" = {
-        hostname = "192.168.0.114";
-        forwardAgent = true;
-        proxyJump = "home.wynprice.com";
-        user = "xilinx";
-      };
-
     };
-
   };
 }
