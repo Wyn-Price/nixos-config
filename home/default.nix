@@ -29,11 +29,5 @@
       ./vscode
       ./wii
     ];
-
-    home.packages = with pkgs; [
-    ];
-
-    services.gpg-agent.pinentry.package = pkgs.pinentry-curses;
-
   };
 }
