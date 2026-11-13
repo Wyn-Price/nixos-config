@@ -97,9 +97,9 @@
     };
 
     servers.milo_maybe_vanilla = {
-      enable = true;
+      enable = false;
       java = pkgs.openjdk21;
-      additionalInstallCommand = "${pkgs.fabric-installer}/bin/fabric-installer server -mcversion 1.21.8 -loader 0.17.2 -downloadMinecraft";
+      additionalInstallCommand = "${pkgs.fabric-installer}/bin/fabric-installer server -mcversion 1.21.10 -loader 0.17.3 -downloadMinecraft";
       runCommand = "java -Xmx6144M -Xms1024M -jar fabric-server-launch.jar";
       serverProperties = {
         motd="miles burny";
